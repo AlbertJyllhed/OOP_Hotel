@@ -13,7 +13,7 @@
             Console.WriteLine("0. Avsluta");
         }
 
-        public static void ChooseMenuOption()
+        public static bool RunProgram()
         {
             int choice = GetInputNumber();
 
@@ -32,12 +32,13 @@
                     ShowBooking();
                     break;
                 case 0:
-                    Environment.Exit(0);
-                    break;
+                    return false;
                 default:
                     Console.WriteLine("Felaktig inmatning.");
                     break;
             }
+
+            return true;
         }
 
         public static void CreateBooking()
@@ -57,6 +58,7 @@
 
             var booking = new HotelBooking(name, date, daysToStay);
             Bookings.Add(booking);
+            Console.WriteLine($"{booking.GuestName} lades till i systemet. Ankomst: {date:d}");
         }
 
         public static void CheckIn()
@@ -72,6 +74,7 @@
 
             int choice = GetInputNumber();
             Bookings[choice - 1].CheckIn = true;
+            Console.WriteLine($"Checkar in {Bookings[choice - 1].GuestName}.");
         }
 
         public static void CheckOut()
@@ -89,6 +92,7 @@
 
             int choice = GetInputNumber();
             Bookings[choice - 1].CheckIn = false;
+            Console.WriteLine($"Checkar ut {Bookings[choice - 1].GuestName}.");
             Bookings.RemoveAt(choice - 1);
         }
 

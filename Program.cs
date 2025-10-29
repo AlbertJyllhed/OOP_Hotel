@@ -4,10 +4,12 @@
     {
         static void Main(string[] args)
         {
-            while (true)
+            bool runProgram = Menu.RunProgram();
+
+            while (runProgram)
             {
                 Menu.PrintMenu();
-                Menu.ChooseMenuOption();
+                runProgram = Menu.RunProgram();
                 Console.ReadKey();
                 Console.Clear();
             }
