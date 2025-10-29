@@ -4,8 +4,13 @@
     {
         static void Main(string[] args)
         {
-            HotelBooking test = new HotelBooking("Kalle", DateTime.Now, 2);
-            test.PrintInfo();
+            while (true)
+            {
+                Menu.PrintMenu();
+                Menu.ChooseMenuOption();
+                Console.ReadKey();
+                Console.Clear();
+            }
         }
     }
 }
