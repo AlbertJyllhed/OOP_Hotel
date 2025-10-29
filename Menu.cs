@@ -13,7 +13,7 @@
             Console.WriteLine("0. Avsluta");
         }
 
-        public static void ChooseMenuOption()
+        public static bool RunProgram()
         {
             int choice = GetInputNumber();
 
@@ -32,12 +32,13 @@
                     ShowBooking();
                     break;
                 case 0:
-                    Environment.Exit(0);
-                    break;
+                    return false;
                 default:
                     Console.WriteLine("Felaktig inmatning.");
                     break;
             }
+
+            return true;
         }
 
         public static void CreateBooking()
