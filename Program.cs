@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            HotelBooking test = new HotelBooking("Kalle", DateTime.Now, 21);
+            HotelBooking test = new HotelBooking("Kalle", DateTime.Now, 2);
             test.PrintInfo();
         }
     }
