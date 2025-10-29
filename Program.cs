@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            HotelBooking test = new HotelBooking("Kalle", DateTime.Now, 21);
+            test.PrintInfo();
         }
     }
 }
