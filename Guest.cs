@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace OOP_Hotel
@@ -70,8 +71,6 @@ namespace OOP_Hotel
             Menu.CreateReservationFromGuestCard(guest);
          }
 
-        
-
       }
 
      
@@ -85,6 +84,39 @@ namespace OOP_Hotel
             $"Email: {guest.Email}\nKund Id: {guest.CustomerId}");
          }
       }
+
+      public static void SearchGuest()
+      {
+         List<Guest> match = new List<Guest>();
+         
+
+         Console.WriteLine("Ange gästens förnamn:");
+         string firstName = Console.ReadLine();
+
+         Console.WriteLine("Ange gästens efternamn:");
+         string lastName = Console.ReadLine();
+         int count = 0;
+
+         for(int i = 0; i < guests.Count; i++)
+         {
+            if (guests[i].FirstName == firstName && guests[i].LastName == lastName)
+            {
+               match.Add(guests[i]);
+            }
+         }
+
+         foreach(var guest in match)
+         {
+            count++;
+            Console.WriteLine($"{count}{guest.FirstName} {guest.LastName} {guest.Email}");
+         }
+         Console.WriteLine("Ange vilken gäst du önskar boka för:");
+         int input = Menu.GetInputNumber();
+
+         
+         Menu.CreateReservationFromGuestCard(match[input - 1]);
+      }
+      
 
    }
 }
