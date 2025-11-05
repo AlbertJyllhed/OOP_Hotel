@@ -120,5 +120,24 @@
 
             return choice;
         }
-    }
+
+      public static void CreateReservationFromGuestCard(Guest guest)
+      {
+
+
+         Console.WriteLine("Skriv gästens ankomstdatum:");
+         DateTime date;
+         while (!DateTime.TryParse(Console.ReadLine(), out date))
+         {
+            Console.WriteLine("Felaktig inmatning, ange datum.");
+         }
+
+         Console.WriteLine("Skriv antal nätter:");
+         int daysToStay = Menu.GetInputNumber();
+         string name = $"{guest.FirstName} {guest.LastName}";
+         var booking = new HotelBooking(name, date, daysToStay);
+         Bookings.Add(booking);
+         Console.WriteLine($"{booking.GuestName} lades till i systemet. Ankomst: {date:d}");
+      }
+   }
 }
