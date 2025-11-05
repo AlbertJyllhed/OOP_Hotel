@@ -4,15 +4,16 @@
     {
         static void Main(string[] args)
         {
-            bool runProgram = true;
+         bool runProgram = true;
 
-            while (runProgram)
-            {
-                Menu.PrintMenu();
-                runProgram = Menu.RunProgram();
-                Console.ReadKey();
-                Console.Clear();
-            }
-        }
+         while (runProgram)
+         {
+            Menu.PrintMenu();
+            runProgram = Menu.RunProgram();
+            Console.ReadKey();
+            Console.Clear();
+         }
+
+      }
     }
 }
