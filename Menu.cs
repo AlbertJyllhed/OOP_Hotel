@@ -1,112 +1,173 @@
 ﻿namespace OOP_Hotel
 {
-    internal static class Menu
-    {
-        static List<HotelBooking> Bookings { get; set; } = [];
+   internal static class Menu
+   {
+      static List<HotelBooking> Bookings { get; set; } = [];
 
-        public static void PrintMenu()
-        {
-            Console.WriteLine("1. Skapa bokning");
-            Console.WriteLine("2. Checka in");
-            Console.WriteLine("3. Checka ut");
-            Console.WriteLine("4. Visa bokning");
-            Console.WriteLine("0. Avsluta");
-        }
+      public static void PrintMenu()
+      {
+         Console.WriteLine("1. Skapa bokning");
+         Console.WriteLine("2. Checka in");
+         Console.WriteLine("3. Checka ut");
+         Console.WriteLine("4. Visa bokning");
+         Console.WriteLine("0. Avsluta");
+      }
 
-        public static bool RunProgram()
-        {
-            int choice = Input.GetInt();
+      public static bool RunProgram()
+      {
+         int choice = GetInputNumber();
 
-            switch (choice)
-            {
-                case 1:
-                    CreateBooking();
-                    break;
-                case 2:
-                    CheckIn();
-                    break;
-                case 3:
-                    CheckOut();
-                    break;
-                case 4:
-                    ShowBooking();
-                    break;
-                case 0:
-                    return false;
-                default:
-                    Console.WriteLine("Felaktig inmatning.");
-                    break;
-            }
+         switch (choice)
+         {
+            case 1:
+               PrintBookingMenu();
+               BookingMenuChoice();
+               break;
+            case 2:
+               CheckIn();
+               break;
+            case 3:
+               CheckOut();
+               break;
+            case 4:
+               ShowBooking();
+               break;
+            case 0:
+               return false;
+            default:
+               Console.WriteLine("Felaktig inmatning.");
+               break;
+         }
 
-            return true;
-        }
+         return true;
+      }
 
-        public static void CreateBooking()
-        {
-            Console.WriteLine("Skriv gästens namn:");
-            string name = Input.GetString();
+      public static void PrintBookingMenu()
+      {
+         Console.WriteLine("1.Skapa bokning och nytt kundkort");
+         Console.WriteLine("2.skapa bokning för befintlig kund");
+         Console.WriteLine("3.Återgå till huvudmeny");
+      }
 
-            Console.WriteLine("Skriv gästens ankomstdatum:");
-            DateTime date;
-            while (!DateTime.TryParse(Console.ReadLine(), out date))
-            {
-                Console.WriteLine("Felaktig inmatning, ange datum.");
-            }
+      public static void BookingMenuChoice()
+      {
+         
+         int input = GetInputNumber();
+         switch (input)
+         {
+            case 1:
+               Guest.CreateGuestCard();
+               break;
+            case 2:
+               Guest.SearchGuest();
+               break;
+            case 3:
+                  
+               break;
 
-            Console.WriteLine("Skriv antal nätter:");
-            int daysToStay = Input.GetInt();
+         }
+         
+      }
 
-            var booking = new HotelBooking(name, date, daysToStay);
-            Bookings.Add(booking);
-            Console.WriteLine($"{booking.GuestName} lades till i systemet. Ankomst: {date:d}");
-        }
 
-        public static void CheckIn()
-        {
-            int count = 0;
 
-            Console.WriteLine("Vilken gäst vill du checka in?");
-            foreach (var booking in Bookings)
-            {
-                Console.WriteLine($"{count + 1}. {booking.GuestName} Ankomst: {booking.StartDate:d}");
-                count++;
-            }
+      public static void CreateBooking()
+      {
+         Console.WriteLine("Skriv gästens namn:");
+         string? name = Console.ReadLine();
 
-            int choice = Input.GetInt();
-            Bookings[choice - 1].CheckIn = true;
-            Console.WriteLine($"Checkar in {Bookings[choice - 1].GuestName}.");
-        }
+         Console.WriteLine("Skriv gästens ankomstdatum:");
+         DateTime date;
+         while (!DateTime.TryParse(Console.ReadLine(), out date))
+         {
+            Console.WriteLine("Felaktig inmatning, ange datum.");
+         }
 
-        public static void CheckOut()
-        {
-            int count = 0;
+         Console.WriteLine("Skriv antal nätter:");
+         int daysToStay = GetInputNumber();
 
-            Console.WriteLine("Vilken gäst vill du checka ut?");
-            foreach (var booking in Bookings)
-            {
-                Console.WriteLine($"{count + 1}. {booking.GuestName} " +
-                    $"Ankomst: {booking.StartDate:d}, " +
-                    $"Avresa: {booking.EndDate:d}");
-                count++;
-            }
+         var booking = new HotelBooking(name, date, daysToStay);
+         Bookings.Add(booking);
+         Console.WriteLine($"{booking.GuestName} lades till i systemet. Ankomst: {date:d}");
+      }
 
-            int choice = Input.GetInt();
-            Bookings[choice - 1].CheckIn = false;
-            Console.WriteLine($"Checkar ut {Bookings[choice - 1].GuestName}.");
-            Bookings.RemoveAt(choice - 1);
-        }
+      public static void CheckIn()
+      {
+         int count = 0;
 
-        public static void ShowBooking()
-        {
-            int count = 0;
+         Console.WriteLine("Vilken gäst vill du checka in?");
+         foreach (var booking in Bookings)
+         {
+            Console.WriteLine($"{count + 1}. {booking.GuestName} Ankomst: {booking.StartDate:d}");
+            count++;
+         }
 
-            foreach (var booking in Bookings)
-            {
-                Console.WriteLine($"{count + 1}. {booking.GuestName} " +
-                    $"Ankomst: {booking.StartDate:d}, " +
-                    $"Avresa: {booking.EndDate:d}");
-                count++;
-            }
-        }
-    }
+         int choice = GetInputNumber();
+         Bookings[choice - 1].CheckIn = true;
+         Console.WriteLine($"Checkar in {Bookings[choice - 1].GuestName}.");
+      }
+
+      public static void CheckOut()
+      {
+         int count = 0;
+
+         Console.WriteLine("Vilken gäst vill du checka ut?");
+         foreach (var booking in Bookings)
+         {
+            Console.WriteLine($"{count + 1}. {booking.GuestName} " +
+                $"Ankomst: {booking.StartDate:d}, " +
+                $"Avresa: {booking.EndDate:d}");
+            count++;
+         }
+
+         int choice = GetInputNumber();
+         Bookings[choice - 1].CheckIn = false;
+         Console.WriteLine($"Checkar ut {Bookings[choice - 1].GuestName}.");
+         Bookings.RemoveAt(choice - 1);
+      }
+
+      public static void ShowBooking()
+      {
+         int count = 0;
+
+         foreach (var booking in Bookings)
+         {
+            Console.WriteLine($"{count + 1}. {booking.GuestName} " +
+                $"Ankomst: {booking.StartDate:d}, " +
+                $"Avresa: {booking.EndDate:d}");
+            count++;
+         }
+      }
+
+      public static int GetInputNumber()
+      {
+         int choice;
+
+         while (!int.TryParse(Console.ReadLine(), out choice))
+         {
+            Console.WriteLine("Felaktig inmatning, ange heltal.");
+         }
+
+         return choice;
+      }
+
+      public static void CreateReservationFromGuestCard(Guest guest)
+      {
+
+
+         Console.WriteLine("Skriv gästens ankomstdatum:");
+         DateTime date;
+         while (!DateTime.TryParse(Console.ReadLine(), out date))
+         {
+            Console.WriteLine("Felaktig inmatning, ange datum.");
+         }
+
+         Console.WriteLine("Skriv antal nätter:");
+         int daysToStay = Menu.GetInputNumber();
+         string name = $"{guest.FirstName} {guest.LastName}";
+         var booking = new HotelBooking(name, date, daysToStay);
+         Bookings.Add(booking);
+         Console.WriteLine($"{booking.GuestName} lades till i systemet. Ankomst: {date:d}");
+      }
+   }
 }
