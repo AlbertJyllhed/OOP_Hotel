@@ -15,7 +15,7 @@
 
         public static bool RunProgram()
         {
-            int choice = GetInputNumber();
+            int choice = Input.GetInt();
 
             switch (choice)
             {
@@ -44,7 +44,7 @@
         public static void CreateBooking()
         {
             Console.WriteLine("Skriv gästens namn:");
-            string? name = Console.ReadLine();
+            string name = Input.GetString();
 
             Console.WriteLine("Skriv gästens ankomstdatum:");
             DateTime date;
@@ -54,7 +54,7 @@
             }
 
             Console.WriteLine("Skriv antal nätter:");
-            int daysToStay = GetInputNumber();
+            int daysToStay = Input.GetInt();
 
             var booking = new HotelBooking(name, date, daysToStay);
             Bookings.Add(booking);
@@ -72,7 +72,7 @@
                 count++;
             }
 
-            int choice = GetInputNumber();
+            int choice = Input.GetInt();
             Bookings[choice - 1].CheckIn = true;
             Console.WriteLine($"Checkar in {Bookings[choice - 1].GuestName}.");
         }
@@ -90,7 +90,7 @@
                 count++;
             }
 
-            int choice = GetInputNumber();
+            int choice = Input.GetInt();
             Bookings[choice - 1].CheckIn = false;
             Console.WriteLine($"Checkar ut {Bookings[choice - 1].GuestName}.");
             Bookings.RemoveAt(choice - 1);
@@ -107,18 +107,6 @@
                     $"Avresa: {booking.EndDate:d}");
                 count++;
             }
-        }
-
-        public static int GetInputNumber()
-        {
-            int choice;
-
-            while(!int.TryParse(Console.ReadLine(), out choice))
-            {
-                Console.WriteLine("Felaktig inmatning, ange heltal.");
-            }
-
-            return choice;
         }
     }
 }
