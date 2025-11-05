@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            bool runProgram = Menu.RunProgram();
+            bool runProgram = true;
 
             while (runProgram)
             {
