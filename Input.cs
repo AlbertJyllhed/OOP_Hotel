@@ -14,6 +14,18 @@
             return choice;
         }
 
+        public static int GetIndex(int maxIndex)
+        {
+            int index = GetInt();
+
+            while (index < 0 || index > maxIndex)
+            {
+                Console.WriteLine("Felaktig inmatning, utanför listan.");
+            }
+
+            return index;
+        }
+
         public static string GetString()
         {
             string? input = Console.ReadLine();
