@@ -10,10 +10,6 @@ namespace OOP_Hotel
 {
     internal class ArrowMenu
     {
-
-
-
-
         public int index;
 
         public List<string> menuchoices = new List<string>() { "One", "Two", "Three" };
