@@ -16,7 +16,7 @@
 
         public int Totalinvoice { get; set; }
 
-        public bool Checkin { get; set; } = false;
+        public bool CheckIn { get; set; } = false;
 
         public List<string> Guestwishlist = new List<string>();
 
