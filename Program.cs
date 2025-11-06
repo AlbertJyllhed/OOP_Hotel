@@ -8,10 +8,12 @@
 
             while (runProgram)
             {
-                Menu.PrintMenu();
-                runProgram = Menu.RunProgram();
-                Console.ReadKey();
-                Console.Clear();
+                //Menu.PrintMenu();
+                //runProgram = Menu.RunProgram();
+                //Console.ReadKey();
+                //Console.Clear();
+                ArrowMenu test = new ArrowMenu();
+                test.MenuChoice();
             }
         }
     }
