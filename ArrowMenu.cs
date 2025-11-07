@@ -10,9 +10,10 @@ namespace OOP_Hotel
 {
     internal class ArrowMenu
     {
+        
         public int index;
 
-        public List<string> menuchoices = new List<string>() { "One", "Two", "Three" };
+        public List<string> menuchoices = new List<string>() { "1. Skapa bokning", "2. Checka in", "3. Checka ut","4.Visa bokning","\n5. Avsluta" };
 
         ConsoleKeyInfo Keypressed;
 
@@ -20,6 +21,7 @@ namespace OOP_Hotel
         public void MenuChoice()
         {
             Console.CursorVisible = false;
+            Menu.ShowHeader();
             Console.WriteLine("Välkommen!\nVad vill du göra?\n");
 
             for (int index = 0; index < menuchoices.Count; index++)
@@ -43,6 +45,7 @@ namespace OOP_Hotel
                 {
                     index--;
                     Console.Clear();
+                    Menu.ShowHeader();
                     Console.WriteLine("Välkommen!\nVad vill du göra?\n");
                     for (int j = 0; j < menuchoices.Count; j++)
                     {
@@ -62,6 +65,7 @@ namespace OOP_Hotel
                 {
                     index++;
                     Console.Clear();
+                    Menu.ShowHeader();
                     Console.WriteLine("Välkommen!\nVad vill du göra?\n");
                     for (int j = 0; j < menuchoices.Count; j++)
                     {
